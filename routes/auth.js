@@ -79,10 +79,10 @@ router.post('/login', async (req, res) => {
       req.session.userId = user.id;
       if (user.role === 'seller') {
         req.session.userId = user.id;
-        return res.redirect('http://localhost:3000/host/add');
+        return res.redirect('https://propertybooking.onrender.com/host/add');
       } else {
         req.session.userId = user.id;
-        return res.redirect('http://localhost:3000/customer/properties');
+        return res.redirect('https://propertybooking.onrender.com/customer/properties');
       }
 
     } else {
@@ -121,7 +121,7 @@ router.post('/register', async (req, res) => {
     });
 
     // Redirect to login page with correct role query param
-    res.redirect(`http://localhost:3001/login?role=${role}`);
+    res.redirect(`https://propertybooking.onrender.com/login?role=${role}`);
 
   } catch (err) {
     console.error(err);
@@ -138,7 +138,7 @@ router.post('/logout', (req, res) => {
       return res.status(500).send('Error logging out.');
     }
     // Redirect to login page with preserved role
-    res.redirect(`http://localhost:3001/login?role=${role}`);
+    res.redirect(`https://propertybooking.onrender.com/login?role=${role}`);
   });
 });
 
@@ -148,7 +148,7 @@ router.post('/logout/seller', (req, res) => {
       console.error('Error destroying session:', err);
       return res.status(500).send('Error logging out.');
     }
-    res.redirect('http://localhost:3001/login?role=seller');
+    res.redirect('https://propertybooking.onrender.com/login?role=seller');
   });
 });
 
