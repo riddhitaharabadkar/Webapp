@@ -20,8 +20,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
