@@ -1,0 +1,21 @@
+# Node modules (backend)
+node_modules/
+
+# Env files
+.env
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS/system files
+.DS_Store
+Thumbs.db
+
+# Uploads
+uploads/

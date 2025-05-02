@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma"  // Ensure this path is correct for your project
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")  // Database URL from the .env file
+}
+
+// Model for Properties
+model Property {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String
+  location      String
+  price         Float
+  available     Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  userId        Int      // Foreign key to the User model
+  user          User     @relation(fields: [userId], references: [id]) // Establishing the relation with the User model
+  bookings      Booking[]
+  images        String[]  // Comma-separated image paths
+}
+
+// Model for Users
+model User {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  password      String
+  fullName      String
+  role          String   @default("user")  // Example roles: 'user', 'admin'
+  properties    Property[] // A user can own multiple properties
+  bookings      Booking[] // A user can make multiple bookings
+}
+
+// Model for Bookings
+model Booking {
+  id           Int      @id @default(autoincrement())
+  propertyId   Int
+  userId       Int
+  checkInDate  DateTime
+  checkOutDate DateTime
+  status       String   @default("pending") // Status can be: 'pending', 'confirmed'
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  property     Property @relation(fields: [propertyId], references: [id])
+  user         User     @relation(fields: [userId], references: [id])
+}
