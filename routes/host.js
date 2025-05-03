@@ -116,18 +116,25 @@ router.post('/add', upload.array('images', 3), async (req, res) => {
 
   // Ensure userId is valid
   if (!userId || isNaN(userId)) {
+    console.error('User not authenticated or invalid userId:', userId);
     return res.status(400).send('User not authenticated');
   }
 
   // Handle the uploaded image files (at least 1 image required)
+  if (!req.files) {
+    console.error('No files uploaded');
+    return res.status(400).send('No files uploaded');
+  }
   const imagePaths = req.files.map(file => file.filename); // Get filenames of uploaded images
   if (imagePaths.length === 0) {
+    console.error('No images found in uploaded files');
     return res.status(400).send('Please upload at least one image');
   }
 
   // Ensure the price is a valid number
   const priceValue = parseFloat(price);
   if (isNaN(priceValue)) {
+    console.error('Invalid price value:', price);
     return res.status(400).send('Invalid price value');
   }
 
@@ -147,8 +154,8 @@ router.post('/add', upload.array('images', 3), async (req, res) => {
 
     res.send('Property added successfully!');
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Failed to add property to database');
+    console.error('Failed to add property to database:', error);
+    res.status(500).send(`Failed to add property to database: ${error.message}`);
   }
 });
 
