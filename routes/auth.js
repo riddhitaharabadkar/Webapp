@@ -161,4 +161,15 @@ router.post('/logout', (req, res) => {
   });
 });
 
+router.post('/logout/seller', (req, res) => {
+  const role = req.session.role || 'seller';  // Preserve the user's role before logging out
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return res.status(500).send('Error logging out.');
+    }
+    res.redirect(`/auth/login?role=${role}`);
+  });
+});
+
 module.exports = router;
