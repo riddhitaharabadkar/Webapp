@@ -265,11 +265,11 @@ router.get('/book/:bookingId/pdf', async (req, res) => {
     doc.fontSize(14).text(`Property: ${booking.property.title}`);
     doc.text(`Description: ${booking.property.description}`);
     doc.text(`Location: ${booking.property.location}`);
-    doc.text(`Price: $${booking.property.price}`);
+    doc.text(`Price: Rs${booking.property.price}`);
     doc.moveDown();
     doc.text(`Check-in Date: ${booking.checkInDate.toDateString()}`);
     doc.text(`Check-out Date: ${booking.checkOutDate.toDateString()}`);
-    doc.text(`Status: ${booking.status}`);
+    doc.text(`Payment Status: ${booking.status}`);
     doc.end();
 
   } catch (error) {
