@@ -15,8 +15,6 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-# Uploads
-uploads/
 
 # Prisma generated client
 prisma/generated/
