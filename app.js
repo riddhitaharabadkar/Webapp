@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
+
 // Set up session middleware
 app.use(
   session({
@@ -26,6 +27,11 @@ app.use(
 const cors = require('cors');
 app.use(cors());
 
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://frontendwebapp.vercel.app',
+  credentials: true,
+}));
 
 // Serve uploaded images from /uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
