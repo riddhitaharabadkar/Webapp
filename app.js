@@ -24,8 +24,7 @@ app.use(
     cookie: { secure: false }, // Set to true if using HTTPS
   })
 );
-const cors = require('cors');
-app.use(cors());
+
 
 const cors = require('cors');
 app.use(cors({
