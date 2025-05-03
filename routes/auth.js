@@ -117,9 +117,10 @@ router.get('/register', (req, res) => {
 
 // POST: Handle registration
 router.post('/register', async (req, res) => {
-  const { email, password, fullName, role } = req.body;
+  const { email, password, fullName } = req.body;
+  const role = req.session.role || 'buyer'; // Use role from session or default to 'buyer'
 
-  if (!email || !password || !fullName || !role) {
+  if (!email || !password || !fullName) {
     return res.status(400).send("All fields are required.");
   }
 
