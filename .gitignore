@@ -19,3 +19,6 @@ Thumbs.db
 
 # Uploads
 uploads/
+
+# Prisma generated client
+prisma/generated/
